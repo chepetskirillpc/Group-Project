@@ -1,1 +1,1 @@
-# Group-Project
+Welcome to Kirill & Egor LOGIKA Group Project!
