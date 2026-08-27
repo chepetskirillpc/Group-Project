@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Group Project</title>
+    <title>Soundwave</title>
 </head>
 <body>
     <header class="header">
@@ -12,13 +12,13 @@
         <div class="logo">
 
             <div class="logo-icon">
-                <img src="images/logo.jpg">
+                <img src="images/logo.jpg" alt="Soundwave logo">
             </div>
 
             <span class="logo-text">Soundwave</span>
 
         </div>
-        
+
         <div class="search-container">
 
             <div class="search-box">
@@ -50,6 +50,7 @@
                     id="searchInput"
                     type="text"
                     placeholder="Search songs or artists..."
+                    autocomplete="off"
                 >
 
             </div>
@@ -64,35 +65,108 @@
 
     <main class="main">
 
-        <div class="empty-state">
+        <div class="content">
 
-            <svg
-                class="empty-search-icon"
-                width="42"
-                height="42"
-                viewBox="0 0 24 24"
-                fill="none">
+            <!-- Переключатель источников -->
+            <div class="source-tabs" id="sourceTabs" role="tablist">
 
-                <circle
-                    cx="10.8"
-                    cy="10.8"
-                    r="7"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                />
+                <button class="source-tab active" data-source="soundcloud" role="tab" aria-selected="true">
+                    <span class="source-dot source-dot--soundcloud"></span>
+                    SoundCloud
+                </button>
 
-                <path
-                    d="M16 16L21 21"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                />
+                <button class="source-tab" data-source="spotify" role="tab" aria-selected="false">
+                    <span class="source-dot source-dot--spotify"></span>
+                    Spotify
+                </button>
 
-            </svg>
+                <button class="source-tab" data-source="youtube" role="tab" aria-selected="false">
+                    <span class="source-dot source-dot--youtube"></span>
+                    YouTube Music
+                </button>
 
-            <p>
-                Search for a song or artist to get started
-            </p>
+            </div>
+
+            <!-- Пустое состояние (по умолчанию) -->
+            <div class="state empty-state" id="emptyState">
+
+                <svg
+                    class="empty-search-icon"
+                    width="42"
+                    height="42"
+                    viewBox="0 0 24 24"
+                    fill="none">
+
+                    <circle
+                        cx="10.8"
+                        cy="10.8"
+                        r="7"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    />
+
+                    <path
+                        d="M16 16L21 21"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                    />
+
+                </svg>
+
+                <p>Search for a song or artist to get started</p>
+
+            </div>
+
+            <!-- Состояние загрузки -->
+            <div class="state loading-state" id="loadingState" hidden>
+                <div class="grid" id="loadingGrid"></div>
+            </div>
+
+            <!-- Состояние ошибки -->
+            <div class="state error-state" id="errorState" hidden>
+
+                <svg
+                    class="error-icon"
+                    width="42"
+                    height="42"
+                    viewBox="0 0 24 24"
+                    fill="none">
+
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M12 8v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                    <circle cx="12" cy="16" r="1" fill="currentColor" />
+
+                </svg>
+
+                <p id="errorMessage">Couldn't reach this source. Try again.</p>
+                <button class="retry-button" id="retryButton">Retry</button>
+
+            </div>
+
+            <!-- Состояние "ничего не найдено" -->
+            <div class="state no-results-state" id="noResultsState" hidden>
+
+                <svg
+                    class="empty-search-icon"
+                    width="42"
+                    height="42"
+                    viewBox="0 0 24 24"
+                    fill="none">
+
+                    <circle cx="10.8" cy="10.8" r="7" stroke="currentColor" stroke-width="1.8" />
+                    <path d="M16 16L21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                </svg>
+
+                <p>No results on <span id="noResultsSource">this source</span>. Try another search or tab.</p>
+
+            </div>
+
+            <!-- Результаты -->
+            <div class="results" id="resultsState" hidden>
+                <div class="grid" id="resultsGrid"></div>
+            </div>
 
         </div>
 
