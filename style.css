@@ -200,15 +200,23 @@ body {
 /* ============ SOURCE TABS ============ */
 
 .source-tabs {
+    position: absolute;
+    top: 5px;
+    left: calc(50% + 245px);
+    top: calc(17px);
+
     display: flex;
     align-items: center;
-    justify-content: center;
-
     gap: 8px;
 
-    margin-bottom: 44px;
-    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    z-index: 10;
 }
+
 
 .source-tab {
     display: flex;

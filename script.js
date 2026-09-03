@@ -231,8 +231,6 @@ async function runSearch() {
     }
 }
 
-/* ============ ПЕРЕКЛЮЧЕНИЕ ИСТОЧНИКОВ ============ */
-
 function setActiveTab(sourceKey) {
     sourceTabs.querySelectorAll(".source-tab").forEach((tab) => {
         const isActive = tab.dataset.source === sourceKey;
@@ -252,8 +250,6 @@ sourceTabs.addEventListener("click", (event) => {
         runSearch();
     }
 });
-
-/* ============ СОБЫТИЯ ПОИСКА ============ */
 
 searchButton.addEventListener("click", runSearch);
 
